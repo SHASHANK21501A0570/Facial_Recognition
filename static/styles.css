@@ -1,0 +1,133 @@
+/* Define keyframes for the rotation animation */
+@keyframes bg-spin {
+    to {
+    --border-angle: 1turn;
+    }
+    }
+    @property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}
+
+/* Apply the rotation animation to the ::before pseudo-element */
+.box::before {
+    content: '';
+    position: absolute;
+    top: -8px; /* Adjust the position to sit on top of the border */
+    left: -8px; /* Adjust the position to sit on top of the border */
+    width: calc(100% + 16px); /* Ensure the line covers the entire width including the border */
+    height: calc(100% + 16px); /* Ensure the line covers the entire height including the border */
+   
+    border-radius: 15px; /* Border radius to match the box's border radius */
+    animation: rotateLine 3s linear infinite; /* Rotate the line continuously */
+    z-index: -1; /* Place the line behind the box */
+}
+
+/* Define the background with conic gradient and animation */
+.box {
+    --border-size: 8px;
+    --border-angle: 0turn;
+    background-image: conic-gradient(
+        from var(--border-angle),
+        rgb(21, 230, 240),
+        rgb(60, 84, 206) 50%,
+        rgb(75, 197, 241)
+      ), conic-gradient(from var(--border-angle),  rgba(205,0,183,1) 10%, rgba(255,114,95,1) 27%, rgba(198,0,177,1) 47%, rgba(0,224,255,1) 68%, rgba(14,100,255,1) 91%, rgba(255,255,255,1) 100%);
+    animation: bg-spin 10s linear infinite;
+    background-size: calc(100% - (var(--border-size) * 1)) calc(100% - (var(--border-size) * 1)),cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+}
+
+/* Define keyframes for the background rotation animation */
+@keyframes bg-spin {
+    to {
+        --border-angle: 1turn;
+    }
+}
+
+/* Define custom property for border angle */
+@property --border-angle {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0turn;
+}
+
+/* Existing styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(146, 142, 142, 0.9);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+.box h1 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    color: wheat;
+}
+
+.box h2 {
+    margin-bottom: 30px;
+    font-size: 1.5em;
+    color: wheat;
+}
+
+.box form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box label {
+    font-size: 1.2em;
+    color: wheat;
+}
+
+.box input[type="text"], .box input[type="password"] {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.box button {
+    padding: 12px 30px;
+    background-color: #6cd6e9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+.box button:hover {
+    background-color: #45a049;
+}
+
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1000;
+    object-fit: cover; /* Ensure the video covers the entire container */
+}

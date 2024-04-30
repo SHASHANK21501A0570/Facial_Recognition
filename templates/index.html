@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="static\vid.mp4" type="video/mp4" alt="problem">
+        Your browser does not support the video tag.
+    </video>
+    <div class="box">
+    <h1>Face Recognition</h1>
+    
+    <h2>Capture Faces</h2>
+    <form id="captureForm" action="/capture_faces" method="post">
+        <label for="name">Enter Name:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit" id="captureButton">Capture Faces</button>
+        <p id="captureMessage"></p>
+    </form>
+
+    <h2>Detect Faces</h2>
+    <form action="/detect_faces" method="get">
+        <button type="submit">Detect Faces</button>
+    </form>
+
+    <script>
+        document.getElementById('captureButton').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Your additional logic here, if needed
+            
+            // Submit the form using JavaScript
+            document.getElementById('captureForm').submit();
+            // Display capture message
+            document.getElementById('captureMessage').innerText = 'Faces captured successfully!';
+        });
+    </script>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
